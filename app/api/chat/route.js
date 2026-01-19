@@ -65,7 +65,7 @@ export async function POST(request) {
       if (hasApiKey) {
         try {
           // 使用有效的模型名称
-          const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+          const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
           const shanghaiLocations = ["张江高科", "漕河泾", "陆家嘴", "闵行经开区", "嘉定汽车城", "青浦工业园", "虹桥商务区", "普陀真如", "静安寺", "松江大学城"];
           const industries = ["芯片封装", "跨境电商", "智能制造", "生物医药", "新能源汽车", "连锁餐饮", "金融服务", "物流仓储", "在线教育", "高端物业"];
@@ -116,7 +116,7 @@ export async function POST(request) {
       const perf = calculatePerformance(scenario.id, lastUserMsg, messages);
       if (hasApiKey) {
         try {
-          const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+          const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
           const coachPrompt = `分析员工回复："${lastUserMsg}"。场景：${scenario.name}。要求：严厉评价。字数100字内。`;
           const result = await model.generateContent(coachPrompt);
           return Response.json({ success: true, message: getCoachFeedback(scenario.id, lastUserMsg, messages, result.response.text()), performance: perf });
@@ -132,7 +132,7 @@ export async function POST(request) {
 
       if (hasApiKey) {
         try {
-          const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+          const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
           const customerPrompt = `你是${scenario.customerRole}。${scenario.systemPrompt}
 
 【核心规则 - 必须严格遵守，否则视为失败】：
